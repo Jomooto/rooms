@@ -25,8 +25,10 @@
               </div>
             </div>
             <div v-else>
-              <button class="btn__outline btn__outline--teal rounded mr-2" v-on:click="getLogin">Login</button>
-              <button class="bg-yellow-dark text-yellow-darker font-semibold py-2 px-4 rounded" @click="getRegister">
+              <button class="btn__outline btn__outline--teal rounded mr-2"
+                      v-on:click="getLogin">Login</button>
+              <button class="bg-yellow-dark text-yellow-darker font-semibold py-2 px-4 rounded"
+                      @click="getRegister">
                 Register</button>
             </div>
           </div>
@@ -48,15 +50,14 @@ export default {
     getLogin() {
       this.$store.dispatch('TOGGLE_MODAL_STATE', {
         name: 'login',
-        value: true
-
-      })
+        value: true,
+      });
     },
     getRegister() {
       this.$store.dispatch('TOGGLE_MODAL_STATE', {
         name: 'register',
-        value: true
-      })
+        value: true,
+      });
     },
     signUp() {
       console.log('Sign Up Click');

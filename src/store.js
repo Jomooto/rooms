@@ -13,6 +13,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_MODAL_STATE: (state, { name, value }) => {
+      // eslint-disable-next-line
       state.modals[name] = value;
     },
   },

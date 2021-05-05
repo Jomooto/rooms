@@ -31,7 +31,7 @@
       <slot></slot>
     </main>
     <footer-partial></footer-partial>
-    <modal v-bind:show="modals.login" v-on:close-modal="closeModal">
+    <modal v-bind:show="modals.login" v-on:close-modal="closeModal('login')">
       <h2 class="text-gree-darkest font-semibold text-center mb-6">
         Wellcome to platzi Rooms
       </h2>
@@ -58,7 +58,7 @@
 
 
 <!--    modal2DE REGISTRO-->
-    <modal v-bind:show="modals.register" v-on:close-modal="closeModalRegister">
+    <modal v-bind:show="modals.register" v-on:close-modal="closeModal('register')">
       <h2 class="text-gree-darkest font-semibold text-center mb-6">
         Registrate en platzi Rooms
       </h2>
@@ -106,16 +106,9 @@ export default {
     Modal,
   },
   methods: {
-    closeModal() {
+    closeModal(name) {
       this.$store.dispatch('TOGGLE_MODAL_STATE', {
-        name: 'login',
-        value: false,
-
-      });
-    },
-    closeModalRegister() {
-      this.$store.dispatch('TOGGLE_MODAL_STATE', {
-        name: 'register',
+        name,
         value: false,
 
       });
