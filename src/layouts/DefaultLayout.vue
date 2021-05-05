@@ -31,6 +31,7 @@
       <slot></slot>
     </main>
     <footer-partial></footer-partial>
+
     <modal v-bind:show="modals.login" v-on:close-modal="closeModal('login')">
       <h2 class="text-gree-darkest font-semibold text-center mb-6">
         Wellcome to platzi Rooms
@@ -39,17 +40,22 @@
         <div class="mb-4">
           <label class="input__field">Email</label>
           <div class="form__field relative">
-            <input type="text" class="input__field" placeholder="Bruce.Wayne@imnotbatman.com">
+            <input v-model="formLogin.email"
+                   type="text" class="input__field" placeholder="Bruce.Wayne@imnotbatman.com">
           </div>
         </div>
 
         <div class="mb-4">
           <label class="input__field">Password</label>
           <div class="form__field relative">
-            <input type="password" class="input__field" placeholder="*******">
+            <input v-model="formLogin.password"
+                   type="password" class="input__field" placeholder="*******">
           </div>
         </div>
-
+        <div class="mb-4">
+          <toggle-input v-model="formLogin.rememberme"></toggle-input>
+          <label>Remember Me</label>
+        </div>
         <div class="mb-4">
           <button class="btn btn-primary mr-3 w-full">Login</button>
         </div>
@@ -97,13 +103,24 @@ import HeaderPartial from '@/partials/HeaderPartial.vue';
 import FooterPartial from '@/partials/FooterPartial.vue';
 import Modal from '../components/Modal.vue';
 import { mapGetters } from 'vuex';
+import ToggleInput from '../components/ToggleInput.vue';
 
 export default {
   name: 'DefaultLayout',
+  data() {
+    return {
+      formLogin: {
+        email: '',
+        password: '',
+        rememberme: false,
+      },
+    };
+  },
   components: {
     HeaderPartial,
     FooterPartial,
     Modal,
+    ToggleInput,
   },
   methods: {
     closeModal(name) {
