@@ -28,13 +28,19 @@
             <div class="house__price text-xs">
               <span class="font-bold">{{ room.price }}</span> per night
             </div>
+            <div class="mb-4 ml-4" v-for="service in services" :key="service['.key']">
+              <li v-show="service['.key'] === room.services[service['.key']]">
+                {{ service.name }}
+              </li>
+            </div>
           </div>
         </div>
       </div>
       <div class="text-center">
-        <a
+        <router-link
+          :to="{name: 'SearchPage'}"
           class="py-3 px-12 bg-yellow-dark no-underline text-yellow-darker text-lg rounded"
-          href="#">Show all</a>
+          >Show all</router-link>
       </div>
     </section>
   </default-layout>
@@ -43,7 +49,7 @@
 <script>
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import TinySlider from '../components/TinySlider.vue';
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'HomePage',
@@ -54,7 +60,12 @@ export default {
   computed: {
     ...mapGetters([
       'rooms',
+      'services',
     ]),
+  },
+  beforeCreate() {
+    this.$store.dispatch('FETCH_ROOMS', 12);
+    this.$store.dispatch('FETCH_SERVICES');
   },
 };
 </script>
