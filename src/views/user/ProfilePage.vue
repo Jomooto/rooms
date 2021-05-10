@@ -70,7 +70,7 @@
                     class="input__field"
                     v-model="profile.bio"
                     rows="5"
-                    id="email"
+                    id="bio"
                     type="text"
                     placeholder="bruce.wayne@imnotbatman.org"></textarea>
                 </div>

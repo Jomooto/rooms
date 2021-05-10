@@ -36,7 +36,7 @@
       <h2 class="text-gree-darkest font-semibold text-center mb-6">
         Wellcome to platzi Rooms
       </h2>
-      <form action="submit">
+      <form v-on:submit.prevent="loginHandlerSubmit">
         <div class="mb-4">
           <label class="input__field">Email</label>
           <div class="form__field relative">
@@ -48,8 +48,7 @@
         <div class="mb-4">
           <label class="input__field">Password</label>
           <div class="form__field relative">
-            <input v-model="formLogin.password"
-                   type="password" class="input__field" placeholder="*******">
+            <input v-model="formLogin.password" type="password" class="input__field">
           </div>
         </div>
         <div class="mb-4">
@@ -68,25 +67,31 @@
       <h2 class="text-gree-darkest font-semibold text-center mb-6">
         Registrate en platzi Rooms
       </h2>
-      <form action="submit">
+      <form v-on:submit.prevent="registerHandlerSubmit">
         <div class="mb-4">
           <label class="input__field">Email</label>
           <div class="form__field relative">
-            <input type="text" class="input__field" placeholder="Bruce.Wayne@imnotbatman.com">
+            <input type="email"
+             v-model="formRegister.email"
+             class="input__field" placeholder="Bruce.Wayne@imnotbatman.com">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="input__field">Name</label>
+          <div class="form__field relative">
+            <input type="text"
+             v-model="formRegister.name"
+             class="input__field" placeholder="Bruce Wayne">
           </div>
         </div>
 
         <div class="mb-4">
           <label class="input__field">Password</label>
           <div class="form__field relative">
-            <input type="password" class="input__field" placeholder="*******">
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <label class="input__field">Repite el Password</label>
-          <div class="form__field relative">
-            <input type="password" class="input__field" placeholder="*******">
+            <input type="password"
+             v-model="formRegister.password"
+             class="input__field">
           </div>
         </div>
 
@@ -114,6 +119,11 @@ export default {
         password: '',
         rememberme: false,
       },
+      formRegister: {
+        email: '',
+        name: '',
+        password: '',
+      },
     };
   },
   components: {
@@ -129,6 +139,21 @@ export default {
         value: false,
 
       });
+    },
+    registerHandlerSubmit() {
+      this.$store.dispatch('CREATE_USER', this.formRegister)
+        .then(() => {
+          this.closeModal('register');
+        });
+    },
+    loginHandlerSubmit() {
+      this.$store.dispatch('SIGN_IN', {
+        email: this.formLogin.email,
+        password: this.formLogin.password,
+      })
+        .then(() => {
+          this.closeModal('login');
+        });
     },
   },
   computed: {

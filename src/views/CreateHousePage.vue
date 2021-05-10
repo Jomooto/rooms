@@ -75,6 +75,9 @@ export default {
   },
   methods: {
     save() {
+      if (!this.$store.state.authId) {
+        return this.$router.push('HomePage');
+      }
       const {
         title, description, featureImage, idservice,
       } = this.publication;
@@ -89,6 +92,7 @@ export default {
         .then(() => {
           this.$router.push({ name: 'SearchPage' });
         });
+      return null;
     },
     checked(idserv) {
       this.publication.idservice[idserv] = idserv;
