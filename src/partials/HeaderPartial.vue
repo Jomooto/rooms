@@ -15,13 +15,13 @@
               <div class="flex" v-if="user">
                 <router-link :to="{ name: 'CreateHousePage' }"
                              class="mr-2 flex no-underline items-center text-grey-darkest">
-                  <i class="material-icons">add</i>
+                  <i class="material-icons">➕</i>
                 </router-link>
                 <button class="mr-4 flex items-center">
-                  <i class="material-icons">notifications</i>
+                  <i class="material-icons">🔔</i>
                 </button>
                 <button class="flex items-center mr-4" v-on:click.prevent="logOut">
-                  <i class="material-icons">exit_to_app</i>
+                  <i class="material-icons">🚪</i>
                 </button>
                 <div class="flex items-center">
                   <img class="w-8 h-8 rounded-full mr-2" src="https://avatars2.githubusercontent.com/u/1901273?s=460&v=4" alt="Avatar of Javier Diaz">
